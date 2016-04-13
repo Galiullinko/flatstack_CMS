@@ -1,8 +1,10 @@
 class PagesController < ApplicationController
   before_action :authenticate_user!, only: %w(new create edit update destroy)
 
-  expose(:page, attributes: :page_params)
-  expose(:pages) { Page.sorted }
+  respond_to :html
+
+  expose_decorated(:page, attributes: :page_params)
+  expose_decorated(:pages) { Page.sorted }
   # expose(:policy) { Policy.new(current_user, paage) }
 
   def index
@@ -27,6 +29,8 @@ class PagesController < ApplicationController
   def destroy
     page.destroy
   end
+
+  private
 
   def page_params
     params.require(:page).permit(:user_id,
