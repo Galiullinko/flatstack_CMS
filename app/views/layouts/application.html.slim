@@ -12,6 +12,19 @@ html lang="en"
     = csrf_meta_tag
 
   body
+    #root
+      = render "navigation"
+      = render "messages"
+      = yield
 
-    == yield
+    = render "footer"
+    javascript:
+      App.currentUserData = #{{current_user.to_json}};
+
+    script src="https://code.jquery.com/jquery-2.1.4.min.js"
+    script src="http://dhbhdrzi4tiry.cloudfront.net/cdn/sites/foundation.js"
+    javascript:
+      $(document).foundation();
+
+    = javascript_include_tag :application
 
