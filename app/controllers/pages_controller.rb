@@ -4,10 +4,9 @@ class PagesController < ApplicationController
   respond_to :html
 
   expose_decorated(:page, attributes: :page_params)
-  expose_decorated(:pages) { Page.sorted }
-  # expose(:policy) { Policy.new(current_user, paage) }
 
   def index
+    @pages = Page.includes(:user).decorate
   end
 
   def new
@@ -28,15 +27,12 @@ class PagesController < ApplicationController
 
   def destroy
     page.destroy
+    respond_with page, location: pages_path
   end
 
   private
 
   def page_params
-    params.require(:page).permit(:user_id,
-                                 :title,
-                                 :context,
-                                 :index,
-                                 :url)
+    params.require(:page).permit(:user_id, :title, :body, :position, :index)
   end
 end

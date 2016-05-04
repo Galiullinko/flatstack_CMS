@@ -1,5 +1,5 @@
 class PageDecorator < ApplicationDecorator
-  delegate :title, :url, :index, :content
+  delegate :title, :body, :position, :index
 
   def author
     object.user.full_name

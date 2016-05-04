@@ -41,6 +41,8 @@ gem "responders"
 gem "rollbar"
 gem "seedbank"
 gem "stackprof"
+gem "ckeditor"
+gem "carrierwave"
 
 group :staging, :production do
   gem "newrelic_rpm"

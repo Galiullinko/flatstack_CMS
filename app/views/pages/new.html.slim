@@ -1,5 +1,6 @@
 .row
   = simple_form_for page do |f|
     = f.input :title
-    = f.input :body
+    = f.cktext_area :body, :class => 'page', :ckeditor => {:language => 'uk'}
+    = f.select :position, ['top', 'right']
     = f.button :submit
